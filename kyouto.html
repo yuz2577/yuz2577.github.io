@@ -2,6 +2,7 @@
 <html lang="en">
 <head>
     
+    <link rel="stylesheet" href="to_top.css">
     <meta http-equiv="content-type" content="text/html; charset=utf-8">
         <script src="./jquery-3.5.1.min.js"></script>
         <script>
@@ -106,7 +107,9 @@
     .momijiyu a:visited {
         color: #deb3b3;
     }
-
+    .momijiyu a {
+        color:  #deb3b3;
+    }
     .top_nav #menu a {
                 margin-right: 25px;
                 cursor: pointer;
@@ -356,6 +359,7 @@
             color: gray;
             }
 /**//**//**//**//**//**//**//**//**//**//**//**//**//**//**//**/
+
           
 
 @keyframes blink-animation {
@@ -436,7 +440,8 @@ $(window).on('load', function () {
         <br><a href="https://www.instagram.com/zyuzyuzyu_/?hl=ko" target="_blank"><i class="fab fa-instagram-square"></i>  Instagram</a> 
            |  <a href="https://www.facebook.com/people/%EA%B9%80%EC%A7%80%EC%9C%A0/100003686183487" target="_blank"><i class="fab fa-facebook-square"></i>  facebook</a> 
            |  <a href="#"></a><i class="fab fa-twitter-square"></i>  Twitter</a></div>
-        
+        <a id="back-to-top" href="#">Topへ</a>
+        <script async src="to_top.js"></script>
   
 
         
@@ -454,6 +459,7 @@ $(window).on('load', function () {
                     $(".nara_menu").html("<a href='nara.html'>나라</a>");
                     $(".siga_menu").html("<a href='siga.html'>시가</a>");
                     $(".modoru").html("뒤로");
+                    $("#back-to-top").html("Top으로");
                     
 
                 });
@@ -465,9 +471,47 @@ $(window).on('load', function () {
                     $(".nara_menu").html("<a href='nara.html'>奈良</a>");
                     $(".siga_menu").html("<a href='siga.html'>滋賀</a>");
                     $(".modoru").html("戻る");
+                    $("#back-to-top").html("Topへ");
         
                 });
             });
+
+            var btt=document.getElementById('back-to-top'),
+                documentElement = document.documentElement,
+                offset, scrollLocation, docHeight;
+            docHeight = Math.max(documentElement.scrollHeight,documentElement.offsetHeight);
+            if (docHeight != 0) {
+                offset = docHeight / 15;
+            }
+            window.addEventListener('scroll',function () {
+               scrollLocation= documentElement.scrollTop; //scrollTop=>스크롤양
+                console.log(scrollLocation);
+
+                
+                if(scrollLocation > offset) { 
+                    btt.className = 'visible';
+                }else {
+                    btt.className = ''; 
+                }
+
+                
+            });
+
+            btt.addEventListener('click', function(st) {
+                st.preventDefault();
+                scrollToTop();
+            });
+
+            function scrollToTop () {
+                var scrollInterval = setInterval (function () {
+                    if(scrollLocation != 0) {
+                        window.scrollBy(0,-55);
+                    } else {
+                        clearInterval(scrollInterval);
+                    }
+                }, 15);
+            }
         </script>
+
 </body>
 </html>

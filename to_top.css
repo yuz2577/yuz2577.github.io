@@ -1,0 +1,29 @@
+#back-to-top {
+    position: fixed;
+    bottom: 5%;
+    right: 3%;
+    background-color: #deb3b3;
+    color: #c97e7e;
+    border: none;
+    border-radius: 10%;
+    padding-top: 5px; padding-bottom: 10px;
+    padding-left:  5px; padding-right: 5px;
+    cursor: pointer;
+    font-weight: 700;
+    transition: all 0.3s ease-in-out;
+    display: inline-block;
+    text-decoration: none;
+    font-size: 15pt;
+    opacity: 0;
+    
+}
+
+#back-to-top:hover {
+    background-color: #c97e7e;
+    color: #deb3b3;
+}
+
+#back-to-top.visible {
+    opacity: 1;
+}
+      

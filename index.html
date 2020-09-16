@@ -1,6 +1,7 @@
 <!DOCTYPE html>
 <html lang="en">
     <head>
+        <link rel="stylesheet" href="to_top.css">
         <link rel="stylesheet" href="fade.css">
         <meta http-equiv="content-type" content="text/html; charset=utf-8">
         <script async src="./jquery-3.5.1.min.js"></script>
@@ -577,7 +578,14 @@
 }
         </style>
     </head>
-
+    <div class="loader_background">
+        <div class="loader"></text>
+    </div>
+</html></div><script>
+$(window).on('load', function () {
+    $('.loader').fadeOut();
+    $('.loader_background').fadeOut();
+});</script>
       <script>
         $( document ).ready( function() {
           var navOffset = $( '.top_nav' ).offset();
@@ -660,6 +668,8 @@
    <br><a href="https://www.instagram.com/zyuzyuzyu_/?hl=ko" target="_blank"><i class="fab fa-instagram-square"></i>  Instagram</a> 
    |  <a href="https://www.facebook.com/people/%EA%B9%80%EC%A7%80%EC%9C%A0/100003686183487" target="_blank"><i class="fab fa-facebook-square"></i>  facebook</a> 
    |  <a href="#"></a><i class="fab fa-twitter-square"></i>  Twitter</a></div>
+   <a id="back-to-top" href="#">Topへ</a>
+   <script async src="to_top.js"></script>
    
    <script>
        
@@ -679,6 +689,7 @@
             $(".big_ment").html("간사이에서 멋진 단풍놀이를 기대하시고 계신다면...");
             $(".location").html("{　오사카/교토/나라/시가　}");
             $(".title").html("관서의 단풍");
+            $("#back-to-top").html("Top으로");
         });
        
         $(".japanese").click(function(){
@@ -696,10 +707,11 @@
             $(".big_ment").html("関西での素敵な紅葉狩りを楽しみたい方でしたら…");
             $(".location").html("{　大阪／京都／奈良／滋賀　｝");
             $(".title").html("関西の紅葉");
+            $("#back-to-top").html("Topへ");
 
 
         });
     });
     </script>
-
+   
 </body></html>
