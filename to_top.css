@@ -19,8 +19,10 @@
 }
 
 #back-to-top:hover {
-    background-color: #c97e7e;
-    color: #deb3b3;
+   padding-left: 20px; padding-right: 20px;;
+   background-color: #cea5a5;
+   color: #bf7373;
+
 }
 
 #back-to-top.visible {
