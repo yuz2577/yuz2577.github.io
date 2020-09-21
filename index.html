@@ -1,715 +1,990 @@
 <!DOCTYPE html>
 <html lang="en">
-    <head>
-        <link rel="stylesheet" href="to_top.css">
-        <link rel="stylesheet" href="fade.css">
-        <meta http-equiv="content-type" content="text/html; charset=utf-8">
-        <script async src="./jquery-3.5.1.min.js"></script>
-        <link async href="https://fonts.googleapis.com/css2?family=Noto+Serif+JP:wght@200&display=swap" rel="stylesheet">
-        <link rel="stylesheet" async href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.14.0/css/all.min.css">
-        <link async href="https://fonts.googleapis.com/css2?family=Noto+Serif+KR:wght@300&display=swap" rel="stylesheet">
-        <title>モミジユ</title>
-        <style>
-            .loader_background {
-                width: 100%;
-                height: 120%;
-                margin-top: -20px;
-                background-color: rgb(255, 255, 255);
-                display: block;
-                position: fixed;
-                z-index: 100;
-                text-align: center;
-            }
-            .loader {
-                border: 18px solid #deb3b3; /* Light grey */
-                border-top: 18px solid #be5d5d; /* Blue */
-                border-radius: 50%;
-                position: fixed;
-                left: 50%;
-                top: 50%;
-                transform: translate(-50%, -50%);
-                width: 180px;
-                height: 180px;
-                animation: spin 2s linear infinite;
-            }
-            @keyframes spin {
-                0% {
-                    transform: translate(-50%, -50%) rotate(0deg);
-                }
-                100% {
-                    transform: translate(-50%, -50%) rotate(360deg);
-                }
-            }
-            /**/ /**/ /**/ /**/ /**/ /**/ /**/ /**/ /**/ /**/ /**/ /**/ /**/ /**/ /**/
-            body {
-                margin: 20px;
-                font-family: 'Noto Serif JP', 'Noto Serif KR' ;
-                
-            }
-            .momijiyu {
-                font-size: 25px;
-                margin-left: 10px;
-                padding-top: 0;
-                color: #deb3b3;
-                font-weight: bold;
-                padding-left: 20px;
-            }
+<head>
+    <meta charset="UTF-8">
+    <link rel="stylesheet" href="to_top.css">
+    <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.14.0/css/all.min.css">    
+    <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@300&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Rancho&display=swap" rel="stylesheet">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Uice Cream!</title>
+    <link href="http://www.jqueryscript.net/css/jquerysctipttop.css" rel="stylesheet" type="text/css">
+<style>
 
-            .navFixed {
-               position: fixed;
-               top: 0px; left: 0px;
-               width: 100%;
-               z-index: 99;
-                }
-            .top_nav {
-                display: flex;
-                padding-top: 0;
-                background-color: #c97e7e;
-                justify-content: space-between;
-                z-index: 98;
-                
-            }
-            .top_nav a {
-                margin-right: 25px;
-                cursor: pointer;
-                color: #7a2c2c;
-                font-size: 17pt;
-                transition: 0.5s;
-                text-align: center;
-            }
-            .top_nav a:hover {
-                color: beige;
-                background-color: #b14949;
-                border-radius:30%;
-            }
-            .title {
-                font-size: 60pt;
-                position: absolute;
-                text-align: center;
-                top: 74%;
-                left: 50%;
-                transform: translate(-50%, -50%);
-                width: 100%;
-                height: 100%;
-                color: #7f1f1f;
-            }
-            .location {
-                font-size: 25pt;
-                position: absolute;
-                top: 43%;
-                left: 50%;
-                transform: translate(-50%, -50%);
-                margin-top: -5px;
-                text-align: center;
-                color: #9c6565;
-                width: 100%;
-            }
-            .big_ment {
-                top: 60%; left: 50%;
-                transform: translate(-50%, -50%); width: 100%;
-                position: absolute;
-                text-align: center;
-                font-size: 28pt;
-                color: #922e2e;
-            }
-            .small_ment {
-                top: 77%; left: 50%;
-                transform: translate(-50%, -50%); width: 100%;
-                position: absolute;
-                text-align: center;
-                font-size: 18pt;
-                margin-top: -30px;
-                color: #965b5d;
-            }
-           
-            .scroll {
-                position: absolute;
-                top: 83%;
-                left: 50%;
-                margin-left: -20px;
-            }
-            .swing {
-                position: absolute;
-                top: 20%;
-                left: 66%;
-                opacity: 0.5
-            }
-            .swing1 {
-                position: absolute;
-                top: 28%;
-                left: 73%;
-                opacity: 0.5
-            }
-            .swing2 {
-                position: absolute;
-                top: 24%;
-                left: 26%;
-                opacity: 0.5;
-            }
-            .tool {
-                width: 100%;
-                position: absolute;
-                top: 100%;
-                margin: 0;
-            }
-            .stamp {
-                position: absolute;
-                width: 80px; height: 80px;
-                left: 50%; top: 100%;
-                transform: translate(-50%, -50%)
-            }
-            .box1 {
-                width: 450px;
-                height: 250px;
-                overflow: hidden;
-                display: inline-flex;
-                position: relative;
-                left: 0;
-                top: 0;
-                cursor: pointer;
-            }
-            .box1 img {
-                width: 100%;
-                position: absolute;
-                transition: 1s;
-                opacity: 0.8;
-            }
-            .box1 i {
-                position: absolute;
-                left: 50%;
-                top: 150%;
-                transform: translate(-50%, -50%);
-                font-size: 80pt;
-                color: white;
-                transition: 1s;
-                opacity: 0.3;
-            }
-            .box1:hover img {
-                width: 105%;
-                opacity: 1;
-            }
-            .osaka_city {
-                position: absolute;
-                width: 100%;
-                left: 50%;
-                top: 50%;
-                transform: translate(-50%, -50%);
-                font-size: 60pt;
-                color: white;
-                transition: 2s;
-            }
-            .box1:hover .osaka_city {
-                position: absolute;
-                top: -100%;
-                opacity: 0.3;
-            }
-            .box1:hover i {
-                position: absolute;
-                top: 50%;
-                opacity: 1;
-            }
-            /**/
-            .box2 {
-                width: 450px;
-                height: 250px;
-                overflow: hidden;
-                display: inline-flex;
-                position: relative;
-                left: 0;
-                top: 0;
-                cursor: pointer;
-            }
-            .box2 img {
-                height: 100%;
-                width: 100%;
-                position: absolute;
-                transition: 1s;
-                opacity: 0.8;
-            }
-            .box2 i {
-                position: absolute;
-                left: 50%;
-                top: 150%;
-                transform: translate(-50%, -50%);
-                font-size: 80pt;
-                color: white;
-                transition: 1.5s;
-                opacity: 0.3;
-            }
-            .box2:hover img {
-                height: 105%;
-                width: 105%;
-                opacity: 1;
-            }
-            .kyouto_city {
-                position: absolute;
-                left: 50%;
-                top: 50%;
-                transform: translate(-50%, -50%);
-                font-size: 60pt;
-                color: white;
-                transition: 2s;
-            }
-            .box2:hover .kyouto_city {
-                position: absolute;
-                top: -100%;
-                opacity: 0.3;
-            }
-            .box2:hover i {
-                position: absolute;
-                top: 50%;
-                opacity: 1;
-            }
-            /**/
-            .box3 {
-                width: 450px;
-                height: 250px;
-                overflow: hidden;
-                display: inline-flex;
-                position: relative;
-                left: 0;
-                top: 0;
-                cursor: pointer;
-            }
-            .box3 img {
-                height: 100%;
-                width: 100%;
-                position: absolute;
-                transition: 1s;
-                opacity: 0.8;
-            }
-            .box3 i {
-                position: absolute;
-                left: 50%;
-                top: 150%;
-                transform: translate(-50%, -50%);
-                font-size: 80pt;
-                color: white;
-                transition: 1.5s;
-                opacity: 0.3;
-            }
-            .box3:hover img {
-                height: 105%;
-                width: 105%;
-                opacity: 1;
-            }
-            .nara_city {
-                position: absolute;
-                left: 50%;
-                top: 50%;
-                transform: translate(-50%, -50%);
-                font-size: 60pt;
-                color: white;
-                transition: 2s;
-            }
-            .box3:hover .nara_city {
-                position: absolute;
-                top: -100%;
-                opacity: 0.3;
-            }
-            .box3:hover i {
-                position: absolute;
-                top: 50%;
-                opacity: 1;
-            }
-            /**/
-            .box4 {
-                width: 450px;
-                height: 250px;
-                overflow: hidden;
-                display: inline-flex;
-                position: relative;
-                left: 0;
-                top: 0;
-                cursor: pointer;
-            }
-            .box4 img {
-                width: 100%;
-                position: absolute;
-                transition: 1s;
-                opacity: 0.8;
-            }
-            .box4 i {
-                position: absolute;
-                left: 50%;
-                top: 150%;
-                transform: translate(-50%, -50%);
-                font-size: 80pt;
-                color: white;
-                transition: 1.5s;
-                opacity: 0.3;
-            }
-            .box4:hover img {
-                width: 105%;
-                opacity: 1;
-            }
-            .siga_city {
-                position: absolute;
-                left: 50%;
-                top: 50%;
-                transform: translate(-50%, -50%);
-                font-size: 60pt;
-                color: white;
-                transition: 3s;
-            }
-            .box4:hover .siga_city {
-                position: absolute;
-                top: -100%;
-                opacity: 0.3;
-            }
-            .box4:hover i {
-                position: absolute;
-                top: 50%;
-                opacity: 1;
-            }
-            .back1 {
-                background-image: url('back1.jpg');
-                width: 100%;
-                height: 650px;
-                text-align: center;
-                position: relative;
-                margin-top: 20px;
-            }
-            .back2 {
-                margin-top: 60px;
-                width: 100%;
-                height: auto;
-                position: relative;
-                text-align: center;
-                margin-bottom: 60px;
-            }
-            .back3 {
-                background-color: #ebbfbf;
-                position: relative;
-                padding: 30px;
-                text-align: right;
-                height: 350px;
-            }
-            .kimono_frame {
-                display: inline-flex;
-                width: 530px;
-                height: 350px;
-                overflow: hidden;
-                float: right;
-                position: relative;
-                left: 0;
-                margin-right: 40px;
-                margin-left: 10px;
-                cursor: pointer;
-            }
-            .kimono_frame img {
-                width: 100%;
-                opacity: 0.8;
-                transition: 1s;
-                position: absolute;
-                bottom: 0;
-            }
-            .kimono_frame:hover img {
-                transform: scale(1.2);
-                opacity: 1;
-            }
-            .kimono_text {
-                background-color: #dc9f9f;
-                position: relative;
-                right: 0;
-                top: 30px;
-            }
-            .kimono_title {
-                font-size: 30px;
-                color: #a84141
-            }
-            .kimono_ment {
-                color: #974b4b;
-            }
-            .kimono_soudan {
-                position: relative;
-                left: -50px;
-                top: 20%;
-                line-height: 37px;
-                font-size: 30pt;
-                color: white;
-                font-weight: 700;
-            }
-            
-            .stamp2 {
-                width: 80px;
-                height: 80px;
-                position: absolute;
-                left: 50%; top: 0%;
-                transform: translate(-50%, -50%);
-                z-index: 98;
-            }
-            /**/
-            .back4 {
-                background-color: #e8c7c7;
-                position: relative;
-                padding: 30px;
-                text-align: left;
-                height: 350px;
-                margin-top:10px;
-               
-            }
-            .bento_frame {
-                display: inline-flex;
-                width: 530px;
-                height: 350px;
-                overflow: hidden;
-                float: left;
-                position: relative;
-                left: 0;
-                margin-right: 14px;
-                margin-left: 10px;
-                cursor: pointer;
-            }
-            .bento_frame img {
-                width: 100%;
-                opacity: 0.7;
-                transition: 1s;
-                position: absolute;
-                bottom: 0;
-            }
-            .bento_frame:hover img {
-                transform: scale(1.2);
-                opacity: 1;
-            }
-            .bento_text {
-                background-color: #d4a9a9;
-                position: relative;
-                right: 0;
-                top: 30px;
-            }
-            .bento_title {
-                font-size: 30px;
-                color: #a84141;
-                line-height: 25px;
-            }
-            .bento_ment {
-                color: #974b4b;
-            }
-            .bento_soudan {
-                position: relative;
-                left: 50px;
-                top: 20%;
-                line-height: 37px;
-                font-size: 30pt;
-                color: white;
-                font-weight: 700;
-                
-            }
-
-            .back4 i {
-                
-                margin-right: 5px;
-                margin-top: 35px;
-                color: white;
-                font-size: 30pt;
-            }
-
-            
-            /**//**//**//**//**//**//**//**//**//**//**//**//**//**//**//**//**//**//**//**/
-            .copyright {
-                text-align: center;
-                line-height: 25px;
-                color: gray;
-                padding-top: 50px;
-                padding-bottom: 20px;
-                font-weight: 200;
-            }
-
-            .copyright a {
-                text-decoration: none;
-                COLOR: GRAY;
-            }
-            .copyright a:visited {
-                color: gray;
-            }
-
-          
-
-            .back3 i {
-                margin-left: 5px;
-                color: white;
-                font-size: 30pt;
-                margin-top: 5px;
-            }
-            /**//**//**//**//**//**//**//**//**//**//**//**//**//**//**//**//**//**//**//**/
-            @media screen and (max-width: 1050px) {
-    .big_ment {
-        font-size:24pt;
-        
-    }
-
-    .kimono_frame, .bento_frame {
-        width: 450px; height: 250px;
-    }
-
-    .kimono_title, .bento_title {
-        font-size: 15pt;
-        
-    }
-
-    .kimono_ment, .bento_ment{
-        font-size: 9pt;
-    }
-
-    .kimono_soudan{
-        font-size: 18pt;
-        line-height: 20pt;
-    }
-
-    .bento_soudan {
-        
-        font-size: 18pt;
-    }
-
-    .back4 i{
-        margin-top: 10px;
-    }
-
-    
-    
-    .back3, .back4 {
-        height: 250px;
-    }
-
-    .swing2 {left: 19%;}
-    .swing1 {left: 77%;}
-    
+/**/
+.scroll_container {
+    position: relative;
+    top: -170px;
 }
-        </style>
-    </head>
+.icon-scroll,
+.icon-scroll:before {
+    position: absolute;
+    left: 50%;
+    top: 100px;
+    z-index: 99999
+}
+.icon-scroll {
+    width: 30px;
+    height: 50px;
+    border: 1px solid white;
+    border-radius: 25px;
+    position: absolute;
+    left: 50%;
+    transform: translate(-50%);
+}
 
-</html></div><script>
-$(window).on('load', function () {
-    $('.loader').fadeOut();
-    $('.loader_background').fadeOut();
-});</script>
-      <script>
+.icon-scroll:before {
+    content: '';
+    width: 8px;
+    height: 8px;
+    background: white;
+    margin-left: -4px;
+    top: 8px;
+    border-radius: 4px;
+    animation-duration: 1.5s;
+    animation-iteration-count: infinite;
+    animation-name: scroll
+}
+.scroll2_container {
+    position: relative;
+    top: -200px;
+    left: 100%;
+    z-index: 9999;
+
+}
+.icon-scroll2,
+.icon-scroll2:before {
+    position: absolute;
+    left: 50%;
+    top: 100px;
+    z-index: 9999
+}
+.icon-scroll2 {
+    width: 30px;
+    height: 50px;
+    border: 1px solid black;
+    border-radius: 25px;
+    position: absolute;
+    left: 50%;
+    transform: translate(-50%);
+}
+
+.icon-scroll2:before {
+    content: '';
+    width: 8px;
+    height: 8px;
+    background: black;
+    margin-left: -4px;
+    top: 8px;
+    border-radius: 4px;
+    animation-duration: 1.5s;
+    animation-iteration-count: infinite;
+    animation-name: scroll
+}
+
+.scroll3_container {
+    position: relative;
+    top: -90px;
+}
+.icon-scroll3,
+.icon-scroll3:before {
+    position: absolute;
+    left: 50%;
+    top: 100px;
+    z-index: 99999
+}
+.icon-scroll3 {
+    width: 30px;
+    height: 50px;
+    border: 1px solid white;
+    border-radius: 25px;
+    position: absolute;
+    left: 50%;
+    transform: translate(-50%);
+}
+
+.icon-scroll3:before {
+    content: '';
+    width: 8px;
+    height: 8px;
+    background: white;
+    margin-left: -4px;
+    top: 8px;
+    border-radius: 4px;
+    animation-duration: 1.5s;
+    animation-iteration-count: infinite;
+    animation-name: scroll
+}
+.scroll4_container {
+    position: relative;
+    top: -200px;
+    left:-25%;
+    z-index: 99999;
+
+}
+.icon-scroll4,
+.icon-scroll4:before {
+    position: absolute;
+    left: 50%;
+    top: 100px;
+    z-index: 99999
+}
+.icon-scroll4 {
+    width: 30px;
+    height: 50px;
+    border: 1px solid black;
+    border-radius: 25px;
+    position: absolute;
+    left: 50%;
+    transform: translate(-50%);
+}
+
+.icon-scroll4:before {
+    content: '';
+    width: 8px;
+    height: 8px;
+    background: black;
+    margin-left: -4px;
+    top: 8px;
+    border-radius: 4px;
+    animation-duration: 1.5s;
+    animation-iteration-count: infinite;
+    animation-name: scroll
+}
+@keyframes scroll {
+    0% {
+        opacity: 1
+    }
+    100% {
+        opacity: 0;
+        transform: translateY(26px)
+    } }
+    /**/
+
+.slider-wrap {
+position: relative;
+margin-top: 110px;
+width: 100%;
+}
+.slider {
+position: relative;
+width: 100%;
+height: 100%;
+top: 10px;
+}
+ul {
+margin: 0;
+padding: 0;
+}
+ul li {
+list-style: none;
+text-align: center;
+}
+ul li span {
+display: inline-flex;
+width: 480px;
+height: 350px;
+background: black;
+filter: brightness(1.1);
+}
+.slider-arrow {
+position: absolute;
+top: 50%;
+font-size: 30pt;
+font-weight: 600;
+background: white;
+color: brown;
+text-align: center;
+text-decoration: none;
+border-radius: 40%;
+padding-left: 10px;
+padding-right: 10px;
+opacity: 0.7;
+transition: 0.5s;
+}
+.slider-arrow:hover {
+    opacity: 1;
+}
+.sa-left {
+left: 10px;
+}
+.sa-right {
+right: 10px;
+}
+.black {
+background-image: url("under1.jpg");
+background-size: 100%;
+}
+.red {
+    background-image: url("under2.jpg");
+    background-size: 100%;
+    height: 350px;
+}
+.green {
+    background-image: url("under3.jpg");
+    background-size: 100%;
+    height: 350px;
+}
+.blue {
+    background-image: url("under4.jpg");
+    background-size: 100%;
+    height: 350px;
+}
+.yellow {
+    background-image: url("under5.jpg");
+    background-size: 100%;
+    height: 350px;
+}
+</style>
+    <script
+  src="https://code.jquery.com/jquery-3.5.1.js"
+  integrity="sha256-QWo7LDvxbWT2tbbQ97B53yJnYU3WhH/C8ycbRAkjPDc="
+  crossorigin="anonymous"></script>
+    <script>
+        /*메뉴스크롤고정*/
         $( document ).ready( function() {
-          var navOffset = $( '.top_nav' ).offset();
+          var navOffset = $( '.menu' ).offset();
           $( window ).scroll( function() {
             if ( $( document ).scrollTop() > navOffset.top ) {
-              $( '.top_nav' ).addClass( 'navFixed' );
+              $( '.menu' ).addClass( 'menuFixed' );
             }
             else {
-              $( '.top_nav' ).removeClass( 'navFixed' );
+              $( '.menu' ).removeClass( 'menuFixed' );
             }
           });
         } );
-
-        
-      </script><body id="fade">
-<div class="back1">
-    <nav class="top_nav">
-        <text class="momijiyu">
-            <i class="fab fa-slack"></i>
-            モミジユ
-        </text>
-        <text class="menu">
-            <a class="japanese">日本語</a>
-            <a class="korean">한국어</a>
-            <a>Chat</a>
-        </text>
-    </nav>
-    <div class="title">
-        関西の紅葉</div>
-    <div class="location">{　大阪／京都／奈良／滋賀　｝</div>
-    <div class="ment">
-        <nav class="big_ment">関西での素敵な紅葉狩りを楽しみたい方でしたら…</nav>
-        <nav class="small_ment">関西で会える秋、あなたの思い出がさらに素敵になるように
-            <br>ここでは様々な情報をあなたに提供します。
-            <br>あなたにとって良い参考になることを願います。</br>
-        </div><img class="stamp" src="stamp.png">
-        <br>
-        
-    
-    <img src="scroll.png" class="scroll">
-    <div class="swing"><img src="momiji.png"></div>
-    <div class="swing1"><img src="momiji2.png"></div>
-    <div class="swing2"><img src="momiji3.png"></div>
-</div>
-<div class="back2">
-    <div class="box1"><a href="oosaka.html"><img src="oosaka.gif"><text class="osaka_city">大阪</text>
-        <i class="far fa-hand-pointer"></i></a>
-    </div>
-    <div class="box2"><a href="kyouto.html"><img src="kyouto.gif"><text class="kyouto_city">京都</text>
-        <i class="far fa-hand-pointer"></i></a>
-    </div>
-    <br><div class="box3"><a href="nara.html"><img src="nara.gif"><text class="nara_city">奈良</text>
-        <i class="far fa-hand-pointer"></i></a>
-    </div>
-    <div class="box4"><a href="siga.html"><img src="siga.gif"><text class="siga_city">滋賀</text>
-        <i class="far fa-hand-pointer"></i></a>
-    </div>
-</div><div class="back3"><span class="kimono_frame"><a href="https://www.asoview.com/leisure/140/location/rgn08/" target="_blank"><img src="kimono.gif"></a></span>
- <text class="kimono_text">
-    <text class="kimono_title">秋にお似合う着物を探していますか?</text>
-<br>
-    <text class="kimono_ment">紅葉狩りにぴったりの着物レンタルショップをご紹介します。
-        <br>どんな着物を着たらいいか迷われるようでしたら、
-        <br>心配しないでください。
-        <br>コーディネーターとの1:1無料相談サービスがあります。</text>
-        </br></text><div><img class="stamp2" src="stamp.png"></div>
-<div class="kimono_soudan">着物レンタルショップ・<br>コーディネーターサイト</div><i class="fas fa-hand-point-right"></i></div>
-<div class="back4"><span class="bento_frame"><a href="https://obentopark.jp/" target="_blank"><img src="food.jpg"></span></a>
-  <text class="bento_text">
-        <text class="bento_title">紅葉狩りに持っていく<br>お弁当のことがお悩みですか? </text>
-        <br><text class="bento_ment">紅葉の下で食べると最高！<br>  
-            世の中にはいろんなお弁当の<br>
-            レシピがあります。 こちらは特に、それぞれの<br>
-            好みやレベルに合わせてレシピが用意されています。</text>
-        </br></text>
-    <div class="bento_soudan">料理レシピの情報はこちらへ</div><i class="fas fa-hand-point-left"></i>
-   </div> <div class="copyright">
-   This is a web development practice page created by Jiyu K.
-   <br>Jiyu K © 2020
-   <br><a href="https://www.instagram.com/zyuzyuzyu_/?hl=ko" target="_blank"><i class="fab fa-instagram-square"></i>  Instagram</a> 
-   |  <a href="https://www.facebook.com/people/%EA%B9%80%EC%A7%80%EC%9C%A0/100003686183487" target="_blank"><i class="fab fa-facebook-square"></i>  facebook</a> 
-   |  <a href="#"></a><i class="fab fa-twitter-square"></i>  Twitter</a></div>
-   <a id="back-to-top" href="#">Topへ</a>
-   <script async src="to_top.js"></script>
-   
-   <script>
-       
-    $(document).ready(function(){
-        $(".korean").click(function(){
-            $(".bento_title").html("단풍놀이에 챙겨갈 도시락을<br> 어떤 것으로 해야할지 고민이 되세요?");
-            $(".bento_ment").html("단풍의 아래에서 먹는 도시락은 최고에요!<br>이곳에는,당신이 좋아하는 취향과<br>레시피의 난이도에 따른 여러가지 레시피가 있습니다.<br>한 번 도전해보심이 어떨까요?");
-            $(".bento_soudan").html("레시피의 정보는 여기에서!");
-            $(".kimono_soudan").html("기모노렌탈샵・<br> 코디네이터와의 상담 연결");
-            $(".kimono_ment").html("단풍놀이에 딱 맞는 기모노 렌탈샵을 소개합니다<br>어떤 기모노가 좋을지 고민이 되신다면,<br>걱정마세요.<br>코디네이터와 1:1 무료 상담서비스가 있습니다.");
-            $(".osaka_city").html("오사카");
-            $(".kyouto_city").html("교토");
-            $(".nara_city").html("나라");
-            $(".siga_city").html("시가");
-            $(".kimono_title").html("가을에 어울리는 기모노를 찾고 계십니까?");
-            $(".small_ment").html("관서에서 만날 수 있는 가을, 당신의 추억이 더욱 더 근사해 질 수 있도록<br>이곳에서 여러가지 정보를 제공합니다<br>당신에게 있어서 좋은 참고가 되길 바랍니다.");
-            $(".big_ment").html("간사이에서 멋진 단풍놀이를 기대하시고 계신다면...");
-            $(".location").html("{　오사카/교토/나라/시가　}");
-            $(".title").html("관서의 단풍");
-            $("#back-to-top").html("Top으로");
-        });
-       
-        $(".japanese").click(function(){
-            $(".bento_title").html("紅葉狩りに持っていく<br>お弁当のことがお悩みですか?");
-            $(".bento_ment").html("紅葉の下で食べると最高！<br>  世の中にはいろんなお弁当の<br>レシピがあります。 こちらは特に、それぞれの<br>好みやレベルに合わせてレシピが用意されています。");
-            $(".bento_soudan").html(" 料理レシピの情報はこちらへ");
-            $(".kimono_soudan").html("着物レンタルショップ・<br>コーディネーターサイト");
-            $(".kimono_ment").html("紅葉狩りにぴったりの着物レンタルショップをご紹介します。<br>どんな着物を着たらいいか迷われるようでしたら、<br>心配しないでください。<br>コーディネーターとの1:1無料相談サービスがあります。");
-            $(".kimono_title").html("秋にお似合う着物を探していますか?");
-            $(".osaka_city").html("大阪");
-            $(".kyouto_city").html("京都");
-            $(".nara_city").html("奈良");
-            $(".siga_city").html("滋賀");
-            $(".small_ment").html("関西で会える秋、あなたの思い出がさらに素敵になるように<br>ここでは様々な情報をあなたに提供します。<br>あなたにとって良い参考になることを願います。");
-            $(".big_ment").html("関西での素敵な紅葉狩りを楽しみたい方でしたら…");
-            $(".location").html("{　大阪／京都／奈良／滋賀　｝");
-            $(".title").html("関西の紅葉");
-            $("#back-to-top").html("Topへ");
-
-
-        });
+        /////////////////////////////////////////////
+        $( document ).ready( function() {
+        $( '#small_title_container' ).fadeIn( 500 );
+      } );
+      $( document ).ready( function() {
+        $( '#big_title_container' ).delay(1000).fadeIn( 500 );
+     } );
+     //////////////////////////////////////////////////
+     $(document).ready(function() {
+    $(window).scroll( function(){
+        $('.slide_right').each( function(i){
+            
+            var bottom_of_element = $(this).offset().top + $(this).outerHeight();
+            var bottom_of_window = $(window).scrollTop() + $(window).height();
+            
+            if( bottom_of_window > bottom_of_element ){
+                $(this).animate({'margin-left':'0px'},500);
+            }
+            
+        }); 
     });
+});
+$(document).ready(function() {
+    $(window).scroll( function(){
+        $('.slide_left').each( function(i){
+            
+            var bottom_of_element = $(this).offset().top + $(this).outerHeight();
+            var bottom_of_window = $(window).scrollTop() + $(window).height();
+            
+            if( bottom_of_window > bottom_of_element ){
+                $(this).animate({'margin-left':'0px'},500);
+            }
+            
+        }); 
+    });
+});
+/////////////////////////////////////////////////
+$(document).ready(function() {
+    /* 1 */
+    $(window).scroll( function(){
+        /* 2 */
+        $('.hide').each( function(i){
+            var bottom_of_object = $(this).offset().top + $(this).outerHeight();
+            var bottom_of_window = $(window).scrollTop() + $(window).height();
+            /* 3 */
+            if( bottom_of_window > bottom_of_object/1 ){
+                $(this).animate({'opacity':'1'},800);
+            }
+        }); 
+    });
+});
+
+
     </script>
+    
+</head>
+<style>
+    .slide_right {
+        max-width: 100%;
+        margin-left: -100%;
+        z-index: 0;
+    }
+
+    .slide_left {
+        max-width: 100%;
+        margin-left: 100%;
+        z-index: 0;
+    }
+    .hide {
+    opacity: 0;
+} 
+    
+    html {
+        scroll-behavior: smooth;
+    }
+    .back_container {
+        background-image:url('back_background.jpg');
+        background-attachment: fixed;
+        background-size: cover;
+        background-position-y: -120px;
+        background-repeat: no-repeat;
+       
+    }
+    body {
+        margin: 0px;
+        font-family: 'Noto Sans KR', sans-serif;
+    }
+    .address_container {
+        background-color: #ffea74;
+        color: white;
+        text-align: center;
+        padding-top: 5px;
+        padding-bottom: 5px;
+        font-weight: 600;
+    }
+    .first_container {
+    background-color: #ff6a9f;
+    height: 800px;
+    }
+    #title_icecream {
+        width: 500px;
+        position: relative;
+        left: 49%; top: -40px;
+        transform: translate(-50%);
+        
+    }
+    /**//**//**//**//**//**//**//**//**//**//**//**//**//**//**//**//**/
+
+    .menu {
+        transition: 0.5s;
+    }
+    .menu a {
+        text-decoration: none;
+        color: #df3072;
+        margin-left: 20px;
+        font-weight: 800;
+        font-size: 15pt;
+    }
+    #menus {
+        background-color: #ff6a9f;
+        padding-top: 0px;
+        justify-content: space-between;
+        display: flex;
+    }
+    #logo a {
+        text-decoration: none;
+        color: white;
+        margin-right: 20px;
+        position: relative;
+        bottom: 22px;
+    }
+    #logo img {
+        position: relative;
+        width: 180px
+    }
+    /**//**//**//**//**//**//**//**//**//**//**//**//**//**//**/
+
+    #big_title_container {
+        position: absolute;
+        top: 420px; left: 50%;
+        transform: translate(-50%);
+        display: none;
+    }
+
+    #small_title_container {
+        position: relative;
+       text-align: center;
+       bottom: 47% ;
+       display: none;}
+     /**//**//**//**//**//**//**//**//**//**//**//**//**//**/
+    .go_menu {
+       color: white;
+       font-size: 25pt;
+       border: solid 2px white;
+       padding-left: 40px;
+       padding-right: 30px;
+       padding-bottom: 3px;
+       position: relative;
+       display: inline-block;
+       bottom: 60px; left: 50%;
+       transform: translate(-50%, -50%);
+       transition: 0.3s
+    }
+    .link {
+        font-weight: 900;
+        animation: blink-animation 0.6s  ease-out infinite alternate;
+        -webkit-animation: blink-animation 0.6s ease-out infinite alternate;
+    }
+    .go_menu:hover .link{
+    }
+    .go_menu:hover {
+        padding-left: 60px;
+        padding-right: 50px;
+    }
+    @keyframes blink-animation {
+   from {
+       opacity: 0;
+   }
+   to {
+       opacity: 0.7;
+   }
+}
+@-webkit-keyframes blink-animation {
+    from {
+       opacity: 0;
+   }
+   to {
+       opacity: 0.7;
+   }
+}
+ /**//** /**//** /**//** /**//** /**//** /**/
+    .second_container {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    background-color: white;
+    
+    }
+    #about_photo {
+        overflow: hidden;
+        text-align: left;
+        z-index:999;
+       
+       
+    }
+    #about_ment {
+       
+        width: 100%;
+        height: 50%;
+        position: relative;
+        top: 25%;
+        overflow: hidden;
+      
+    }
+    #about_photo img {
+        width: 140%; height:100%;
+        vertical-align: bottom;
+       
+    }
+    #about_ment {
+        text-align: center;
+    }
+
+    #about_ment_title{
+        font-size: 20pt;
+        font-weight: 900;
+    }
+    #about_ment_subtitle {
+        font-family: 'Rancho', cursive;
+        font-size: 15pt;
+        color: rgb(41, 40, 40);
+    }
+    #about_ment_small {
+        font-weight: 700;
+        color:grey;
+        font-size: 15px;
+    }
+/**//**//**//**//**//**//**//**//**//**/
+    .third_container {
+        position: relative;
+        width: 100%;
+        height: 100%;;
+    }
+    .third_container_text1{
+        text-align: center;
+        margin-top: 50px;
+    }
+    .지방은_적게 {
+        color: white;
+        font-size: 50pt;
+        font-weight: 900;
+        text-align: center;
+    }
+    .made_with_blabla {
+        color: white;
+        font-family: 'Rancho', cursive;
+        font-size: 25pt;
+        text-align: center;
+    }
+    .third_container_text2{
+        position: relative;
+        margin-top: 420px; 
+        margin-bottom: 55pt;left: 50%;
+        transform: translate(-50%);
+        border-radius: 10px;
+        border: white solid 3px;
+        display: inline-block;
+        padding-left: 20px;
+        padding-right: 20px;
+    }
+    .third_menu {
+        color: white;
+        font-size: 20pt;
+        font-weight: 900;
+        transition: 0.5s;
+    }
+    .third_menu:hover {
+        padding-left: 20px;
+        padding-right: 20px;
+    }
+    /**//**//**//**//**//**//**//**//**//**//**//**//**//**//**//**//**//**//**//**//**//**/
+    .fourth_container {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    background-color: white;
+    
+    }
+    #interior_photo {
+        overflow: hidden;
+        text-align: right;
+        z-index: 999;
+       
+        
+    }
+    #interior_ment {
+        
+        width: 100%;
+        height: 50%;
+        position: relative;
+        top: 25%;
+        overflow: hidden;
+      
+    }
+    #interior_photo img {
+        width: 140%; height: 100%;
+        vertical-align: bottom;
+    }
+    #interior_ment {
+        text-align: center;
+    }
+
+    #interior_ment_title{
+        font-size: 20pt;
+        font-weight: 900;
+    }
+    #interior_ment_subtitle {
+        font-family: 'Rancho', cursive;
+        font-size: 15pt;
+        color: rgb(41, 40, 40);
+    }
+    #interior_ment_small {
+        font-weight: 700;
+        color:grey;
+        font-size: 15px;
+    }
+</style>
+<body>
+    <div class="back_container" id="top">
+    <div class="address_container">
+        울산광역시 남구 중앙로120번길 대명루첸 상가 | 연중무휴 11:00~21:00
+    </div>
+    <div id="menus">
+        <div class="menu">
+        <a href="#about_page">ABOUT</a>
+        <a href="#special_page">SPECIAL</a>
+        <a href="#cooking_page">CLASS</a>
+        <a href="#another_page">MENU</a>
+        </div>
+        <div id="logo">
+            <a href="#"><img src="logo.png"></a>
+        </div>
+      </div>
+    <div class="first_container">
+      <div id="title_icecream_container"> 
+        <img src="title_icecream.png" id="title_icecream">
+       </div>
+       <div id="big_title_container">
+        <img src="big_title.png" id="big_title">
+       </div>
+       <div id="small_title_container">
+        <img src="small_title.png" id="small_title">
+        </div>
+        <div class="go_menu hide">MENU <span class="link">>></div></span>
+        <div class="scroll_container"><a href="#about_page" class="icon-scroll"></a></div>
+    </div><scroll-page id="about_page">
+    <div class="second_container">
+        <span id="about_photo"><img src="about.jpg"></span></scroll-page>
+    <div id="about_ment" class="slide_right">
+        <div id="about_ment_title">유이스크림만의 맛을 느껴보세요!</div>
+        <div id="about_ment_subtitle">Taste UICE CREAM's flavor!</div>
+        <br>
+        <div id="about_ment_small">원하는 맛을 마음껏 골라보세요!<br>
+            고르셨다면 다양한 토핑을 추가해보세요!<br>
+                 <br>
+            이 다음부터는 무슨 말을 해야할 지 모르겠지만<br>
+            일단은 디자인을 위해서 블라블라블라<br>
+            블라블라 가나다라마바사<br>
+            이런 아이스크림 가게가 진짜로있었으면<br>
+            좋겠당 한국에서도 먹힐까요?<br>
+            해외에서는 꽤 인기 있는 것 같더라고요<br>
+            개인 매장치고도 꽤 히트치고 티비도 나오고<br>
+           </div>
+    </div>
+    <div class="scroll2_container"><a href="#special_page" class="icon-scroll2"></a></div>
+    </div>
+    <scroll-page id="special_page">
+    <div class="third_container"></scroll-page>
+      <div class="third_container_text1">
+        <span class="지방은_적게 hide">지방은 적게, 달콤함은 최고!</span>
+        <br> <span class="made_with_blabla hide">Made with low fat and fresh cream!</span>
+      </div>
+      <div class="third_container_text2 hide">
+        <span class="third_menu">저지방 메뉴<span class="link"> >></span>
+        <div class="scroll3_container"><a href="#cooking_page" class="icon-scroll3"></a></div>
+      </div></div>
+    </div>
+</div>
+<scroll-page id="cooking_page">
+<div class="fourth_container"></scroll-page>
+<div id="interior_ment" class="slide_left">
+    <div id="interior_ment_title">여러분의 취향대로 만들어보세요!</div>
+    <div id="interior_ment_subtitle">Chellenge you flavor!</div>
+    <br>
+    <div id="interior_ment_small">단 맛? 상큼한 맛?<br>
+        무엇이든 준비되어 있어요!<br>
+             <br>
+        이 다음부터는 무슨 말을 해야할 지 모르겠지만<br>
+        일단은 디자인을 위해서 블라블라블라<br>
+        블라블라 가나다라마바사<br>
+        이런 아이스크림 가게가 진짜로있었으면<br>
+        좋겠당 한국에서도 먹힐까요?<br>
+        해외에서는 꽤 인기 있는 것 같더라고요<br>
+        개인 매장치고도 꽤 히트치고 티비도 나오고<br>
+        </div>
+       
+       </div>
+        <span id="interior_photo"><img src="cafe.jpg"></span></div>
+        <div class="scroll4_container"><a href="#another_page" class="icon-scroll4"></a></div>
+<div class="back_background_second">
+
+    <div class="back_ground_second_container">
+        <div class="choco_container hide">
+        <div id="big_choco"><img src="wide_choco.png"></div>
+        <div id="big_choco_choco"><img src="wide_choco_choco.png"></div>
+    </div>
+    </div>
+</div>
+<div class="slider-wrap">
+    <div class="slider hide">
+    <ul>
+    <li> <span class="black"></span> </li>
+    <li> <span class="red"></span> </li>
+    <li> <span class="yellow"></span> </li>
+    <li> <span class="blue"></span> </li>
+    <li> <span class="green"></span> </li>
+    </ul>
+    </div>
+    <a href="#" class="slider-arrow sa-left">&lt;</a> <a href="#" class="slider-arrow sa-right">&gt;</a> </div>
+    <script src="http://code.jquery.com/jquery-latest.min.js"></script> 
+    <script src="jquery.lbslider.js"></script> 
+    <script>
+        //슬라이더//
+    jQuery('.slider').lbSlider({
+        leftBtn: '.sa-left',
+        rightBtn: '.sa-right',
+        visible: 3,
+        autoPlay: true,
+        autoPlayDelay: 2
+    });
+    //
+    </script>
+    <div class="footer" id="another_page">
+        <div class="grid1">
+            <div class="grid1_">
+            <div class="grid_title">ADDRESS</div>
+            울산광역시 남구 중앙로 120번길
+        </div></div>
+        <div class="grid2">
+            <div class="grid2_">
+            <div class="grid_title">TELL</div>
+            052-123-4567
+        </div></div>
+        <div class="grid3">
+            <div class="grid3_">
+            <div class="grid_title">Social Page</div>
+            <a href="https://www.instagram.com/zyuzyuzyu_/?hl=ko" target="_blank"><i class="fab fa-instagram-square"></i></a> 
+            |  <a href="https://www.facebook.com/people/%EA%B9%80%EC%A7%80%EC%9C%A0/100003686183487" target="_blank"><i class="fab fa-facebook-square"></i></a> 
+            |  <a href="#"></a><i class="fab fa-twitter-square"> |</i></a>
+        </div></div>
+        <div class="grid4">
+            <div class="grid4_">
+                <div class="grid4_title">Another Page?</div>
+                <div class="firstPage">
+                <i class="fas fa-walking"></i><br><a href="https://yuz2577.github.io/">https://yuz2577.github.io/</a> <br>
+                첫번째로 만든 연습사이트(일본어/한국어 지원 | 반응형 미완성)</div>
+                <div class="SecondPage">
+                <i class="fas fa-walking"></i><br> <a href="https://yuz2577.github.io/uice_cream.github.io/">https://yuz2577.github.io/uice_cream.github.io/</a> <br>
+                두번째로 만든 연습사이트(슬라이드 추가 | 반응형 개발진행)(현재 페이지)
+        </div></div>
+    </div>
+    <a id="back-to-top" href="#top">GO TO TOP</a>
+    <script async src="to_top.js"></script>
+<style>
+    .firstPage {
+        margin-bottom: 5px;
+    }
+    .grid4 a {
+        color: white;
+        text-decoration-color: #d8c1a5;
+    }
+    .grid4 i {
+        font-size: 15pt;
+        
+    }
+    .grid4_title {
+        color: #d8c1a5;
+        font-size: 17pt;
+        font-weight: 900;
+        margin-bottom: 10px;
+    }
+    .grid4_{
+        text-align: right;
+        margin-right: 20px;
+    }
+    .grid1_ ,.grid2_, .grid3_,.grid4_ {
+        position: relative;
+        top: 45%;
+        transform: translate(0%, -50%)
+
+    }
+    .grid_title{
+        font-size: 15pt;
+        color: #cfb89d;
+    }
+    .grid3 i {
+        color: whitesmoke;
+        text-decoration: none;
+        font-size :13pt;
+    }
+    .footer {
+        background-color: #48341d;
+        display :grid;
+        grid-template-columns: 0.33fr 0.33fr 0.33fr 1fr;
+        color: white;
+        text-align:right;
+        height: 300px;
+        font-size: 10pt;
+
+    }
+    .grid1, .grid2, .grid3, .grid4 {
+        display: inline;
+        position: relative;
+        
+        padding: 0px;
+        margin: 5px;
+    }
+
+    
+    .back_background_second  {
+        background-image : url("brown_pattern.jpg");
+        background-attachment: fixed;
+        background-size: cover;
+        position: relative;
+        height: 100%;
+        
+       
+    }
+    .choco_container {
+        display: inline-table;
+    }
+
+    #big_choco {
+        position: relative;
+        overflow: hidden;
+        width: 100%;
+        background-size: cover;
+        z-index: 999;
+       
    
-</body></html>
+    }
+    #big_choco img {
+        position: relative;
+        width: 100%;
+        height: 90%;
+    }
+    #big_choco_choco {
+        position: absolute;
+        overflow: hidden;
+        z-index: 999;
+        top: 20px;
+        left: 52%;
+        transform: translate(-50%);
+       
+   
+    }
+    #big_choco_choco img {
+        position: relative;
+        width: 90%;
+    }
+
+    
+          @media screen and (max-width: 900px) {
+              #back-to-top {
+                  font-size: 10pt
+              }
+              .icon-scroll, .icon-scroll2, .icon-scroll3, .icon-scroll4 {
+                  display: none;
+              }
+              .back_container {
+                  background-position-y: -0px;
+                  background-size: cover;
+              }
+             
+              .menuFixed{
+                  width: 100%;
+                  
+              }
+              
+              .menu a{
+                  font-size: 5pt;
+              }
+              .first_container {
+                  height: 400px;
+              }
+              #title_icecream {
+                  width: 300px;
+              }
+            #big_title_container img{
+                width: 700px;
+                position: relative;
+                top: -200px
+            }
+            .go_menu {
+                position: relative;
+                top: -100px;
+                font-size: 10pt;
+                padding-left: 20px;
+                padding-right: 20px;
+            }
+            .go_menu:hover {
+                padding-left: 30px;
+                padding-right: 30px
+            }
+            #small_title_container img{
+                width: 600px;
+            }
+            #about_photo , #interior_photo {
+                height: 100%;
+            }
+            #about_ment_title, #interior_ment_title {
+                font-size: 10pt;
+            }
+            #about_ment_subtitle, #interior_ment_subtitle {
+                font-size:  8pt;
+            }
+            #about_ment_small, #interior_ment_small{
+                font-size: 5pt;;
+            }
+            .third_container {
+                position: relative;
+                height: 300px;
+            }
+            .third_container_text1{
+                margin-top: 10px;
+                text-align: left;
+            }
+            .지방은_적게 {
+                font-size: 20pt;
+            }
+            .made_with_blabla {
+                font-size: 15pt;
+            }
+            .third_container_text2 {
+                margin-top: 150px;
+                position: relative;
+                left: 100px;
+            }
+            .third_menu {
+                font-size: 15pt;
+            }
+            .third_menu:hover {
+                padding-left: 10px;
+                padding-right: 10px;
+            }
+          }
+
+        @media screen and (max-width: 770px) {
+        .footer {
+            grid-template-columns: 0.5fr 0.5fr 0.6fr 1fr;
+        }
+        
+        .third_container_text2{
+            margin-top: 190px;
+        }   
+
+        
+        #big_choco_choco {
+            position: absolute;
+            top:5px;
+            width: 75%;
+            left:55%;
+            transform: translate(-50%);
+        }
+        .slider-wrap {
+            position: relative;
+            height: 200px;
+        }
+        .grid_title, .grid4_title{
+            font-size: 8pt;
+        }
+
+        .footer i {
+            font-size: 6pt;
+        }
+        .footer {
+            font-size : 3px;
+            height: 200px;
+
+        }
+
+        .back_background_second{
+            height: 400px
+        }
+        .back_background_second_container {
+            height: 900px;
+        }
+        .back_container {
+            background-size: 250%;
+            background-position-x: -200px;
+        }
+         .address_container {
+             font-size: 5pt;
+         }
+         .menu a{
+             font-size:  3pt;
+             margin-left: 2px;
+             
+         }
+         #logo img {
+             margin-top: 13px;
+             width: 100px;
+             opacity: 0;
+            
+         }
+         #title_icecream {
+             position: relative;
+             top: -20px
+         }
+         
+         #big_title_container img {
+             width: 400px;
+         }
+        
+         #small_title_container img{
+            width: 300px;
+         }
+        .go_menu {
+            position: relative;
+            top: -70px;
+        }
+        }
+        
+</style>
+
+</html>
