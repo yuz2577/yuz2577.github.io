@@ -37,8 +37,7 @@
                 text-align: center;
             }
             .loader {
-                
-                border-radius: 50%;
+               
                 position: fixed;
                 left: 50%;
                 top: 50%;
@@ -46,11 +45,13 @@
                 width: 180px;
                 height: 180px;
                 animation: spin 2s linear infinite;
-                background-image: url('momiji.png')
+                background-image: url('momiji.png');
+                background-repeat: no-repeat;
+                background-size: 100%;
             }
             @keyframes spin {
                 0% {
-                    transform: translate(-50%, -50%) rotate(50deg);
+                    transform: translate(-50%, -50%) rotate(0deg);
                 }
                 100% {
                     transform: translate(-50%, -50%) rotate(360deg);
